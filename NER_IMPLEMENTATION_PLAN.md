@@ -1,15 +1,15 @@
-# 🎯 NER Assignment Integration with SecurityGraphAI Project
+# 🎯 NER Implementation Plan for SecurityGraphAI Project
 
 ## Overview
 
-This document outlines how to integrate the NER (Named Entity Recognition) assignment with the SecurityGraphAI knowledge graph project.
+This document outlines the implementation of Named Entity Recognition (NER) for automated entity extraction from CVE vulnerability descriptions in the SecurityGraphAI knowledge graph project.
 
 ---
 
-## Assignment Requirements ✅
+## Implementation Requirements ✅
 
 - ✅ Use two transformer-based models for token classification
-- ✅ Fine-tune on benchmark dataset  
+- ✅ Fine-tune on CVE security dataset  
 - ✅ Evaluate with Precision, Recall, F1-score
 - ✅ Compare model performance
 - ✅ Analyze misclassified entities
@@ -46,7 +46,7 @@ allows remote attackers to execute arbitrary SQL queries via the sSQL parameter.
 
 ### 3. Data Annotation Strategy
 
-**Option 1: Manual Annotation (Recommended for Assignment)**
+**Option 1: Manual Annotation (Recommended)**
 - Annotate 100-200 CVE descriptions manually
 - Use tools like Label Studio or Doccano
 - Create train/val/test splits (70/15/15)
@@ -155,8 +155,8 @@ Actual: VERSION → Predicted: O (missed entities)
 
 ## Expected Outcomes
 
-### For NER Assignment:
-✅ Complete assignment requirements with real-world data  
+### For NER Implementation:
+✅ Automated entity extraction with state-of-the-art models  
 ✅ Deep analysis of transformer models on security domain  
 ✅ Published results and model comparison  
 ✅ Reusable annotated dataset for security NER
@@ -213,7 +213,7 @@ label-studio  # for annotation (optional)
 
 ```
 SecurityGraphAI/
-├── ner/                          # NEW: NER Assignment
+├── ner/                          # NEW: NER Implementation
 │   ├── data/
 │   │   ├── annotated_cves.json   # Annotated dataset
 │   │   ├── train.json
@@ -256,7 +256,7 @@ SecurityGraphAI/
 
 ## Benefits
 
-### Academic (Assignment):
+### Research Value:
 1. Real-world security domain application
 2. Meaningful comparison beyond toy datasets
 3. Publishable results

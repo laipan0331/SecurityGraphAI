@@ -24,20 +24,20 @@ SecurityGraph AI is a knowledge graph-based cybersecurity assistant that maps vu
 
 ## 🎯 Current Project Status
 
-**Week:** 1-2 (Setup & Data Collection Phase)  
-**Overall Progress:** 15% Complete
+**Week:** 2-3 (Data Engineering Complete → Graph Database Phase)  
+**Overall Progress:** 30% Complete
 
 ### Team Progress
 
 | Role | Team Member | Progress | Status |
 |------|-------------|----------|--------|
-| 🔧 **Data Engineer** | Panpan Lai | 50% | ✅ On Track |
+| 🔧 **Data Engineer** | Panpan Lai | 100% | ✅ Complete |
 | 🗄️ **Graph Engineer** | TBD | 0% | 📋 Ready to Start |
 | 🤖 **AI Engineer** | TBD | 0% | 📋 Ready to Start |
 
 ---
 
-## 📊 Data Engineering Progress (50% ✅)
+## 📊 Data Engineering Progress (100% ✅)
 
 **Responsible:** Panpan Lai
 
@@ -65,9 +65,17 @@ SecurityGraph AI is a knowledge graph-based cybersecurity assistant that maps vu
    - Stratified by severity
    - Files: [etl/04_create_splits.py](etl/04_create_splits.py)
 
+### ✅ Completed (Week 2)
+
+5. **NER Framework Integration** ✅
+   - Designed 7 entity types for CVE data
+   - Created comprehensive annotation guidelines
+   - Built complete training pipeline (BERT + DeBERTa)
+   - Files: [NER_IMPLEMENTATION_PLAN.md](NER_IMPLEMENTATION_PLAN.md), [NER_ANNOTATION_GUIDE.md](NER_ANNOTATION_GUIDE.md)
+
 📄 **Detailed Report:** See [DATA_ENGINEERING.md](DATA_ENGINEERING.md)
 
-### 📝 To-Do (Week 2-4)
+### 📝 To-Do (Week 3-5)
 
 - [ ] OWASP vulnerability data collection (30-40 entries)
 - [ ] Defense/mitigation strategies (30-40 entries)
@@ -496,8 +504,8 @@ This project is for educational and research purposes as part of DAMG 7374 - Gen
 
 ---
 
-**Last Updated:** February 16, 2026  
+**Last Updated:** February 23, 2026  
 **Version:** 0.1.0 (Alpha - Data Collection Phase)  
-**Status:** 15% Complete - Week 1-2
+**Status:** 30% Complete - Week 1-2
 
 Built with 🔐 by DAMG 7374 Group

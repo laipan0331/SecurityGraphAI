@@ -239,4 +239,4 @@ Before submitting annotations:
 
 ---
 
-**Ready to start?** Follow the NER_ASSIGNMENT_PROPOSAL.md for full implementation plan.
+**Ready to start?** Follow the NER_IMPLEMENTATION_PLAN.md for full implementation plan.
