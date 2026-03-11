@@ -1,5 +1,4 @@
 import os
-import ast
 import re
 import pandas as pd
 from neo4j import GraphDatabase
@@ -8,16 +7,15 @@ from dotenv import load_dotenv
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 load_dotenv(os.path.join(BASE_DIR, ".env"))
 
-CSV_PATH = os.path.join(BASE_DIR, "data", "processed_cves.csv")
+CSV_PATH = os.path.join(BASE_DIR, "data", "enhanced_cves.csv")
 
 NEO4J_URI = os.getenv("NEO4J_URI")
 NEO4J_USERNAME = os.getenv("NEO4J_USERNAME")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
 
-
 def unique_clean(values):
     seen = set()
-    cleaned_values = []
+    result = []
 
     for value in values:
         if value is None:
@@ -27,84 +25,92 @@ def unique_clean(values):
         if cleaned == "":
             continue
 
-        lowered = cleaned.lower()
-        if lowered not in seen:
-            seen.add(lowered)
-            cleaned_values.append(cleaned)
+        key = cleaned.lower()
+        if key not in seen:
+            seen.add(key)
+            result.append(cleaned)
 
-    return cleaned_values
-
-
-def parse_extracted_entities(raw_value):
-    if pd.isna(raw_value):
-        return {}
-
-    try:
-        parsed = ast.literal_eval(str(raw_value))
-        if isinstance(parsed, dict):
-            return parsed
-    except (ValueError, SyntaxError):
-        pass
-
-    return {}
+    return result
 
 
-def extract_versions(row):
-    versions = []
+def normalize_text(value):
+    if pd.isna(value):
+        return None
 
-    entities = parse_extracted_entities(row.get("extracted_entities"))
-    extracted_versions = entities.get("version", [])
+    cleaned = str(value).strip()
+    if cleaned == "" or cleaned.lower() in {"unknown", "nan", "none"}:
+        return None
 
-    if isinstance(extracted_versions, list):
-        versions.extend(extracted_versions)
-
-    return unique_clean(versions)
-
+    return cleaned
 
 def extract_cwe_ids(raw_cwe_value):
-    if pd.isna(raw_cwe_value):
+    text = normalize_text(raw_cwe_value)
+    if text is None:
         return []
 
-    cwe_text = str(raw_cwe_value).strip()
-    if cwe_text == "" or cwe_text.lower() == "unknown":
-        return []
-
-    # Handles values like:
-    # "CWE-352"
-    parts = re.split(r"[;,]", cwe_text)
-
+    parts = re.split(r"[;,|]", text)
     cwe_ids = []
+
     for part in parts:
-        cleaned = part.strip()
-        if cleaned != "" and cleaned.lower() != "unknown":
-            cwe_ids.append(cleaned)
+        candidate = part.strip()
+        if candidate:
+            cwe_ids.append(candidate)
 
     return unique_clean(cwe_ids)
 
+def extract_versions(raw_versions_value):
+    text = normalize_text(raw_versions_value)
+    if text is None:
+        return []
+
+    matches = re.findall(
+        r"\b\d+(?:\.\d+){1,3}(?:\s*(?:alpha|beta|rc)\d*)?\b",
+        text,
+        flags=re.IGNORECASE,
+    )
+
+    return unique_clean(matches)
 
 def extract_year(published_date_value):
-    if pd.isna(published_date_value):
+    text = normalize_text(published_date_value)
+    if text is None:
         return None
 
-    text = str(published_date_value).strip()
     if len(text) >= 4 and text[:4].isdigit():
         return text[:4]
 
     return None
 
-
 def create_constraints(session):
-    constraint_queries = [
+    queries = [
         "CREATE CONSTRAINT cve_id_unique IF NOT EXISTS FOR (c:CVE) REQUIRE c.cve_id IS UNIQUE",
         "CREATE CONSTRAINT severity_level_unique IF NOT EXISTS FOR (s:Severity) REQUIRE s.level IS UNIQUE",
         "CREATE CONSTRAINT cwe_id_unique IF NOT EXISTS FOR (w:CWE) REQUIRE w.cwe_id IS UNIQUE",
+        "CREATE CONSTRAINT software_name_unique IF NOT EXISTS FOR (s:Software) REQUIRE s.name IS UNIQUE",
         "CREATE CONSTRAINT version_value_unique IF NOT EXISTS FOR (v:Version) REQUIRE v.value IS UNIQUE",
-        "CREATE CONSTRAINT year_value_unique IF NOT EXISTS FOR (y:Year) REQUIRE y.value IS UNIQUE"
+        "CREATE CONSTRAINT vuln_type_name_unique IF NOT EXISTS FOR (v:VulnerabilityType) REQUIRE v.name IS UNIQUE",
+        "CREATE CONSTRAINT attack_vector_name_unique IF NOT EXISTS FOR (a:AttackVector) REQUIRE a.name IS UNIQUE",
+        "CREATE CONSTRAINT year_value_unique IF NOT EXISTS FOR (y:Year) REQUIRE y.value IS UNIQUE",
     ]
 
-    for query in constraint_queries:
+    for query in queries:
         session.run(query)
 
+def merge_cve(session, cve_id, description, cleaned_description, cvss_score, published_date):
+    session.run(
+        """
+        MERGE (c:CVE {cve_id: $cve_id})
+        SET c.description = $description,
+            c.cleaned_description = $cleaned_description,
+            c.cvss_score = $cvss_score,
+            c.published_date = $published_date
+        """,
+        cve_id=cve_id,
+        description=description,
+        cleaned_description=cleaned_description,
+        cvss_score=cvss_score,
+        published_date=published_date,
+    )
 
 def main():
     if not (NEO4J_URI and NEO4J_USERNAME and NEO4J_PASSWORD):
@@ -114,7 +120,7 @@ def main():
 
     driver = GraphDatabase.driver(
         NEO4J_URI,
-        auth=(NEO4J_USERNAME, NEO4J_PASSWORD)
+        auth=(NEO4J_USERNAME, NEO4J_PASSWORD),
     )
 
     driver.verify_connectivity()
@@ -123,38 +129,36 @@ def main():
         create_constraints(session)
 
         for _, row in df.iterrows():
-            cve_id = str(row["cve_id"]).strip()
-            description = str(row["description"]).strip()
+            cve_id = normalize_text(row.get("cve_id"))
+            if cve_id is None:
+                continue
+
+            description = normalize_text(row.get("description")) or ""
+            cleaned_description = normalize_text(row.get("cleaned_description")) or description
 
             cvss_score = None
             if pd.notna(row.get("cvss_score")):
-                cvss_score = float(row["cvss_score"])
+                cvss_score = float(row.get("cvss_score"))
 
-            severity = str(row.get("severity", "")).strip()
-            published_date = None
-            if pd.notna(row.get("published_date")):
-                published_date = str(row["published_date"]).strip()
-
+            published_date = normalize_text(row.get("published_date"))
+            severity = normalize_text(row.get("severity"))
+            software_name = normalize_text(row.get("software_name"))
+            vulnerability_type = normalize_text(row.get("vulnerability_type"))
+            attack_vector = normalize_text(row.get("attack_vector"))
             year_value = extract_year(row.get("published_date"))
             cwe_ids = extract_cwe_ids(row.get("cwe_ids"))
-            versions = extract_versions(row)
+            versions = extract_versions(row.get("affected_versions"))
 
-            # CVE node
-            session.run(
-                """
-                MERGE (c:CVE {cve_id: $cve_id})
-                SET c.description = $description,
-                    c.cvss_score = $cvss_score,
-                    c.published_date = $published_date
-                """,
-                cve_id=cve_id,
-                description=description,
-                cvss_score=cvss_score,
-                published_date=published_date
+            merge_cve(
+                session,
+                cve_id,
+                description,
+                cleaned_description,
+                cvss_score,
+                published_date,
             )
 
-            # Severity node
-            if severity != "":
+            if severity is not None:
                 session.run(
                     """
                     MERGE (s:Severity {level: $level})
@@ -163,11 +167,10 @@ def main():
                     MERGE (c)-[:HAS_SEVERITY]->(s)
                     """,
                     cve_id=cve_id,
-                    level=severity
+                    level=severity,
                 )
 
-            # CWE nodes
-            for one_cwe_id in cwe_ids:
+            for cwe_id in cwe_ids:
                 session.run(
                     """
                     MERGE (w:CWE {cwe_id: $cwe_id})
@@ -176,10 +179,21 @@ def main():
                     MERGE (c)-[:MAPS_TO]->(w)
                     """,
                     cve_id=cve_id,
-                    cwe_id=one_cwe_id
+                    cwe_id=cwe_id,
                 )
 
-            # Version nodes
+            if software_name is not None:
+                session.run(
+                    """
+                    MERGE (s:Software {name: $name})
+                    WITH s
+                    MATCH (c:CVE {cve_id: $cve_id})
+                    MERGE (c)-[:AFFECTS_SOFTWARE]->(s)
+                    """,
+                    cve_id=cve_id,
+                    name=software_name,
+                )
+
             for version_value in versions:
                 session.run(
                     """
@@ -189,10 +203,44 @@ def main():
                     MERGE (c)-[:AFFECTS_VERSION]->(v)
                     """,
                     cve_id=cve_id,
-                    value=version_value
+                    value=version_value,
                 )
 
-            # Year node
+                if software_name is not None:
+                    session.run(
+                        """
+                        MATCH (s:Software {name: $software_name})
+                        MERGE (v:Version {value: $value})
+                        MERGE (s)-[:HAS_VERSION]->(v)
+                        """,
+                        software_name=software_name,
+                        value=version_value,
+                    )
+
+            if vulnerability_type is not None:
+                session.run(
+                    """
+                    MERGE (v:VulnerabilityType {name: $name})
+                    WITH v
+                    MATCH (c:CVE {cve_id: $cve_id})
+                    MERGE (c)-[:HAS_VULNERABILITY_TYPE]->(v)
+                    """,
+                    cve_id=cve_id,
+                    name=vulnerability_type,
+                )
+
+            if attack_vector is not None:
+                session.run(
+                    """
+                    MERGE (a:AttackVector {name: $name})
+                    WITH a
+                    MATCH (c:CVE {cve_id: $cve_id})
+                    MERGE (c)-[:HAS_ATTACK_VECTOR]->(a)
+                    """,
+                    cve_id=cve_id,
+                    name=attack_vector,
+                )
+
             if year_value is not None:
                 session.run(
                     """
@@ -202,12 +250,11 @@ def main():
                     MERGE (c)-[:PUBLISHED_IN]->(y)
                     """,
                     cve_id=cve_id,
-                    value=year_value
+                    value=year_value,
                 )
 
     driver.close()
-    print("Successfully loaded clean graph into Neo4j.")
-
+    print("Successfully loaded enhanced graph into Neo4j.")
 
 if __name__ == "__main__":
     main()
