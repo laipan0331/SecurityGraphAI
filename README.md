@@ -32,8 +32,8 @@ SecurityGraph AI is a knowledge graph-based cybersecurity assistant that maps vu
 | Role | Team Member | Progress | Status |
 |------|-------------|----------|--------|
 | 🔧 **Data Engineer** | Panpan Lai | 100% | ✅ Complete |
-| 🗄️ **Graph Engineer** | TBD | 0% | 📋 Ready to Start |
-| 🤖 **AI Engineer** | TBD | 0% | 📋 Ready to Start |
+| 🗄️ **Graph Engineer** | Hak Hyun Lee | 0% | 📋 Ready to Start |
+| 🤖 **AI Engineer** | Sai Kaushik Bhima | 0% | 📋 Ready to Start |
 
 ---
 
@@ -73,16 +73,15 @@ SecurityGraph AI is a knowledge graph-based cybersecurity assistant that maps vu
    - Built complete training pipeline (BERT + DeBERTa)
    - Files: [NER_IMPLEMENTATION_PLAN.md](NER_IMPLEMENTATION_PLAN.md), [NER_ANNOTATION_GUIDE.md](NER_ANNOTATION_GUIDE.md)
 
+6. **Supplemental Security Taxonomy Datasets** ✅
+   - Added OWASP, vulnerability, defense, technology, tool, and CWE reference data
+   - Added relationship CSVs for graph loading (vulnerability-defense, vulnerability-tool, vulnerability-CWE, vulnerability-OWASP, CVE-technology)
+   - Files: [etl/05_generate_security_taxonomy.py](etl/05_generate_security_taxonomy.py), [data/vulnerabilities.csv](data/vulnerabilities.csv), [data/defenses.csv](data/defenses.csv)
+
 📄 **Detailed Report:** See [DATA_ENGINEERING.md](DATA_ENGINEERING.md)
 
 ### 📝 To-Do (Week 3-5)
 
-- [ ] OWASP vulnerability data collection (30-40 entries)
-- [ ] Defense/mitigation strategies (30-40 entries)
-- [ ] Technology data (40-50 entries)
-- [ ] Security tools data (20-25 entries)
-- [ ] CWE data integration (25-30 entries)
-- [ ] Relationship data creation (5 CSV files)
 - [ ] Expand CVE collection (+50-70 records)
 - [ ] Data validation
 
@@ -140,19 +139,17 @@ SecurityGraphAI/
 │   ├── test.csv                     # ✅ Test set (15 records)
 │   ├── statistics_report.txt        # ✅ Statistical analysis
 │   │
-│   └── [To be created by Data Engineer]
-│       ├── vulnerabilities.csv      # 📝 30-40 vulnerability types
-│       ├── defenses.csv             # 📝 30-40 defense strategies
-│       ├── technologies.csv         # 📝 40-50 technologies
-│       ├── tools.csv                # 📝 20-25 security tools
-│       ├── cwes.csv                 # 📝 25-30 CWE entries
-│       ├── owasp_categories.csv     # 📝 10 OWASP Top 10
-│       └── [Relationship files]
-│           ├── vuln_defenses.csv
-│           ├── cve_technologies.csv
-│           ├── vuln_tools.csv
-│           ├── vuln_cwes.csv
-│           └── vuln_owasp.csv
+│   ├── vulnerabilities.csv          # ✅ vulnerability reference table
+│   ├── defenses.csv                 # ✅ defense reference table
+│   ├── technologies.csv             # ✅ technology reference table
+│   ├── tools.csv                    # ✅ security tools reference table
+│   ├── cwes.csv                     # ✅ CWE reference table
+│   ├── owasp_categories.csv         # ✅ OWASP Top 10 table
+│   ├── vuln_defenses.csv            # ✅ vulnerability-defense relationships
+│   ├── cve_technologies.csv         # ✅ CVE-technology relationships
+│   ├── vuln_tools.csv               # ✅ vulnerability-tool relationships
+│   ├── vuln_cwes.csv                # ✅ vulnerability-CWE relationships
+│   └── vuln_owasp.csv               # ✅ vulnerability-OWASP relationships
 │
 ├── etl/                             # 🔧 ETL scripts
 │   ├── 01_collect_data.py           # ✅ NVD API data collection
@@ -160,10 +157,8 @@ SecurityGraphAI/
 │   ├── 03_generate_statistics.py    # ✅ Statistical analysis
 │   ├── 04_create_splits.py          # ✅ Dataset splitting
 │   │
-│   └── [To be created]
-│       ├── fetch_nvd_cves.py        # 📝 Enhanced CVE fetcher
-│       ├── parse_cwe_data.py        # 📝 CWE XML parser
-│       └── load_to_neo4j.py         # 📝 Neo4j data loader
+│   ├── load_to_neo4j.py             # ✅ Neo4j data loader
+│   └── 05_generate_security_taxonomy.py  # ✅ supplemental dataset generator
 │
 ├── graphrag/                        # 🤖 GraphRAG components (Week 3-4)
 │   ├── __init__.py
@@ -232,6 +227,9 @@ python etl/03_generate_statistics.py
 
 # Step 4: Create train/val/test splits
 python etl/04_create_splits.py
+
+# Step 5: Generate supplemental security taxonomy datasets
+python etl/05_generate_security_taxonomy.py
 ```
 
 ---
@@ -458,11 +456,11 @@ Interactive graph showing vulnerability relationships.
 - CVE Pipeline Details: [README_CVE_Pipeline.md](README_CVE_Pipeline.md)
 
 ### Graph Questions
-- Contact: TBD (Graph Engineer)
+- Contact: Hak Hyun Lee (Graph Engineer)
 - Resources: Neo4j documentation, graph schema design
 
 ### AI/UI Questions
-- Contact: TBD (AI Engineer)
+- Contact: Sai Kaushik Bhima (AI Engineer)
 - Resources: LangChain docs, Streamlit tutorials
 
 ---
@@ -503,9 +501,5 @@ Interactive graph showing vulnerability relationships.
 This project is for educational and research purposes as part of DAMG 7374 - Generative AI for Data course.
 
 ---
-
-**Last Updated:** February 23, 2026  
-**Version:** 0.1.0 (Alpha - Data Collection Phase)  
-**Status:** 30% Complete - Week 1-2
 
 Built with 🔐 by DAMG 7374 Group

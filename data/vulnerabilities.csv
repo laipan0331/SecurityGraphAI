@@ -1,0 +1,37 @@
+id,name,description,severity,owasp_rank,category
+VULN-001,SQL Injection,SQL Injection weakness in application stack.,High,OWASP-2021-A01,Auth
+VULN-002,Blind SQL Injection,Blind SQL Injection weakness in application stack.,Critical,OWASP-2021-A02,Access
+VULN-003,NoSQL Injection,NoSQL Injection weakness in application stack.,Medium,OWASP-2021-A03,Memory
+VULN-004,LDAP Injection,LDAP Injection weakness in application stack.,High,OWASP-2021-A04,Availability
+VULN-005,Command Injection,Command Injection weakness in application stack.,Critical,OWASP-2021-A05,Configuration
+VULN-006,Cross-Site Scripting,Cross-Site Scripting weakness in application stack.,Medium,OWASP-2021-A06,Injection
+VULN-007,Stored XSS,Stored XSS weakness in application stack.,High,OWASP-2021-A07,Auth
+VULN-008,DOM XSS,DOM XSS weakness in application stack.,Critical,OWASP-2021-A08,Access
+VULN-009,Cross-Site Request Forgery,Cross-Site Request Forgery weakness in application stack.,Medium,OWASP-2021-A09,Memory
+VULN-010,Server-Side Request Forgery,Server-Side Request Forgery weakness in application stack.,High,OWASP-2021-A10,Availability
+VULN-011,XML External Entity,XML External Entity weakness in application stack.,Critical,OWASP-2021-A01,Configuration
+VULN-012,Path Traversal,Path Traversal weakness in application stack.,Medium,OWASP-2021-A02,Injection
+VULN-013,Local File Inclusion,Local File Inclusion weakness in application stack.,High,OWASP-2021-A03,Auth
+VULN-014,Remote File Inclusion,Remote File Inclusion weakness in application stack.,Critical,OWASP-2021-A04,Access
+VULN-015,Insecure Deserialization,Insecure Deserialization weakness in application stack.,Medium,OWASP-2021-A05,Memory
+VULN-016,Authentication Bypass,Authentication Bypass weakness in application stack.,High,OWASP-2021-A06,Availability
+VULN-017,Broken Access Control,Broken Access Control weakness in application stack.,Critical,OWASP-2021-A07,Configuration
+VULN-018,Privilege Escalation,Privilege Escalation weakness in application stack.,Medium,OWASP-2021-A08,Injection
+VULN-019,Session Fixation,Session Fixation weakness in application stack.,High,OWASP-2021-A09,Auth
+VULN-020,Credential Stuffing,Credential Stuffing weakness in application stack.,Critical,OWASP-2021-A10,Access
+VULN-021,Security Misconfiguration,Security Misconfiguration weakness in application stack.,Medium,OWASP-2021-A01,Memory
+VULN-022,Sensitive Data Exposure,Sensitive Data Exposure weakness in application stack.,High,OWASP-2021-A02,Availability
+VULN-023,Information Disclosure,Information Disclosure weakness in application stack.,Critical,OWASP-2021-A03,Configuration
+VULN-024,Insecure Direct Object Reference,Insecure Direct Object Reference weakness in application stack.,Medium,OWASP-2021-A04,Injection
+VULN-025,Open Redirect,Open Redirect weakness in application stack.,High,OWASP-2021-A05,Auth
+VULN-026,Buffer Overflow,Buffer Overflow weakness in application stack.,Critical,OWASP-2021-A06,Access
+VULN-027,Heap Overflow,Heap Overflow weakness in application stack.,Medium,OWASP-2021-A07,Memory
+VULN-028,Race Condition,Race Condition weakness in application stack.,High,OWASP-2021-A08,Availability
+VULN-029,Denial of Service,Denial of Service weakness in application stack.,Critical,OWASP-2021-A09,Configuration
+VULN-030,Insecure File Upload,Insecure File Upload weakness in application stack.,Medium,OWASP-2021-A10,Injection
+VULN-031,Hardcoded Credentials,Hardcoded Credentials weakness in application stack.,High,OWASP-2021-A01,Auth
+VULN-032,Integer Overflow,Integer Overflow weakness in application stack.,Critical,OWASP-2021-A02,Access
+VULN-033,Use After Free,Use After Free weakness in application stack.,Medium,OWASP-2021-A03,Memory
+VULN-034,Clickjacking,Clickjacking weakness in application stack.,High,OWASP-2021-A04,Availability
+VULN-035,Regex DoS,Regex DoS weakness in application stack.,Critical,OWASP-2021-A05,Configuration
+VULN-036,Format String,Format String weakness in application stack.,Medium,OWASP-2021-A06,Injection

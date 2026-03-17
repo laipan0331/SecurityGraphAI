@@ -1,0 +1,29 @@
+cwe_id,name,description,abstraction
+CWE-20,Improper Input Validation,Improper Input Validation weakness class.,Base
+CWE-22,Path Traversal,Path Traversal weakness class.,Base
+CWE-79,Cross-Site Scripting,Cross-Site Scripting weakness class.,Base
+CWE-89,SQL Injection,SQL Injection weakness class.,Base
+CWE-94,Code Injection,Code Injection weakness class.,Base
+CWE-134,Format String,Format String weakness class.,Base
+CWE-190,Integer Overflow,Integer Overflow weakness class.,Base
+CWE-200,Information Exposure,Information Exposure weakness class.,Base
+CWE-285,Improper Authorization,Improper Authorization weakness class.,Base
+CWE-287,Improper Authentication,Improper Authentication weakness class.,Base
+CWE-307,Auth Attempt Limits,Auth Attempt Limits weakness class.,Base
+CWE-352,CSRF,CSRF weakness class.,Base
+CWE-362,Race Condition,Race Condition weakness class.,Base
+CWE-400,Resource Consumption,Resource Consumption weakness class.,Base
+CWE-434,Unrestricted File Upload,Unrestricted File Upload weakness class.,Base
+CWE-416,Use After Free,Use After Free weakness class.,Base
+CWE-476,Null Pointer Dereference,Null Pointer Dereference weakness class.,Base
+CWE-502,Insecure Deserialization,Insecure Deserialization weakness class.,Base
+CWE-601,Open Redirect,Open Redirect weakness class.,Base
+CWE-611,XXE,XXE weakness class.,Base
+CWE-639,IDOR,IDOR weakness class.,Base
+CWE-732,Permission Assignment,Permission Assignment weakness class.,Base
+CWE-787,Out-of-Bounds Write,Out-of-Bounds Write weakness class.,Base
+CWE-798,Hardcoded Credentials,Hardcoded Credentials weakness class.,Base
+CWE-863,Authorization,Authorization weakness class.,Base
+CWE-918,SSRF,SSRF weakness class.,Base
+CWE-1021,Clickjacking,Clickjacking weakness class.,Base
+CWE-119,Buffer Overflow,Buffer Overflow weakness class.,Base

@@ -1,0 +1,25 @@
+id,name,category,vendor,description
+TOOL-001,Burp Suite,Security Tool,Various,Security tool: Burp Suite.
+TOOL-002,OWASP ZAP,Security Tool,Various,Security tool: OWASP ZAP.
+TOOL-003,Nmap,Security Tool,Various,Security tool: Nmap.
+TOOL-004,Nessus,Security Tool,Various,Security tool: Nessus.
+TOOL-005,Nikto,Security Tool,Various,Security tool: Nikto.
+TOOL-006,sqlmap,Security Tool,Various,Security tool: sqlmap.
+TOOL-007,Metasploit,Security Tool,Various,Security tool: Metasploit.
+TOOL-008,Wireshark,Security Tool,Various,Security tool: Wireshark.
+TOOL-009,Trivy,Security Tool,Various,Security tool: Trivy.
+TOOL-010,Snyk,Security Tool,Various,Security tool: Snyk.
+TOOL-011,SonarQube,Security Tool,Various,Security tool: SonarQube.
+TOOL-012,Semgrep,Security Tool,Various,Security tool: Semgrep.
+TOOL-013,GitGuardian,Security Tool,Various,Security tool: GitGuardian.
+TOOL-014,HashiCorp Vault,Security Tool,Various,Security tool: HashiCorp Vault.
+TOOL-015,CrowdStrike Falcon,Security Tool,Various,Security tool: CrowdStrike Falcon.
+TOOL-016,Suricata,Security Tool,Various,Security tool: Suricata.
+TOOL-017,Snort,Security Tool,Various,Security tool: Snort.
+TOOL-018,ModSecurity,Security Tool,Various,Security tool: ModSecurity.
+TOOL-019,Falco,Security Tool,Various,Security tool: Falco.
+TOOL-020,OpenVAS,Security Tool,Various,Security tool: OpenVAS.
+TOOL-021,OWASP Dependency-Check,Security Tool,Various,Security tool: OWASP Dependency-Check.
+TOOL-022,kube-bench,Security Tool,Various,Security tool: kube-bench.
+TOOL-023,Checkov,Security Tool,Various,Security tool: Checkov.
+TOOL-024,Gitleaks,Security Tool,Various,Security tool: Gitleaks.
