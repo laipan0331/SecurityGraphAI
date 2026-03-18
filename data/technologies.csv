@@ -1,0 +1,46 @@
+id,name,category,vendor,description
+TECH-001,PHP,Technology,Various,Technology platform: PHP.
+TECH-002,Java,Technology,Various,Technology platform: Java.
+TECH-003,Python,Technology,Various,Technology platform: Python.
+TECH-004,JavaScript,Technology,Various,Technology platform: JavaScript.
+TECH-005,TypeScript,Technology,Various,Technology platform: TypeScript.
+TECH-006,C#,Technology,Various,Technology platform: C#.
+TECH-007,.NET,Technology,Various,Technology platform: .NET.
+TECH-008,Spring Boot,Technology,Various,Technology platform: Spring Boot.
+TECH-009,Django,Technology,Various,Technology platform: Django.
+TECH-010,Flask,Technology,Various,Technology platform: Flask.
+TECH-011,Node.js,Technology,Various,Technology platform: Node.js.
+TECH-012,Express.js,Technology,Various,Technology platform: Express.js.
+TECH-013,React,Technology,Various,Technology platform: React.
+TECH-014,Angular,Technology,Various,Technology platform: Angular.
+TECH-015,Vue.js,Technology,Various,Technology platform: Vue.js.
+TECH-016,WordPress,Technology,Various,Technology platform: WordPress.
+TECH-017,Drupal,Technology,Various,Technology platform: Drupal.
+TECH-018,Joomla,Technology,Various,Technology platform: Joomla.
+TECH-019,Apache HTTP Server,Technology,Various,Technology platform: Apache HTTP Server.
+TECH-020,Nginx,Technology,Various,Technology platform: Nginx.
+TECH-021,Microsoft IIS,Technology,Various,Technology platform: Microsoft IIS.
+TECH-022,Tomcat,Technology,Various,Technology platform: Tomcat.
+TECH-023,Oracle WebLogic,Technology,Various,Technology platform: Oracle WebLogic.
+TECH-024,Oracle Database,Technology,Various,Technology platform: Oracle Database.
+TECH-025,MySQL,Technology,Various,Technology platform: MySQL.
+TECH-026,PostgreSQL,Technology,Various,Technology platform: PostgreSQL.
+TECH-027,Microsoft SQL Server,Technology,Various,Technology platform: Microsoft SQL Server.
+TECH-028,MongoDB,Technology,Various,Technology platform: MongoDB.
+TECH-029,Redis,Technology,Various,Technology platform: Redis.
+TECH-030,Docker,Technology,Various,Technology platform: Docker.
+TECH-031,Kubernetes,Technology,Various,Technology platform: Kubernetes.
+TECH-032,Linux,Technology,Various,Technology platform: Linux.
+TECH-033,Windows Server,Technology,Various,Technology platform: Windows Server.
+TECH-034,OpenSSL,Technology,Various,Technology platform: OpenSSL.
+TECH-035,Jenkins,Technology,Various,Technology platform: Jenkins.
+TECH-036,GitLab CI,Technology,Various,Technology platform: GitLab CI.
+TECH-037,GitHub Actions,Technology,Various,Technology platform: GitHub Actions.
+TECH-038,Neo4j,Technology,Various,Technology platform: Neo4j.
+TECH-039,Apache Struts,Technology,Various,Technology platform: Apache Struts.
+TECH-040,Log4j,Technology,Various,Technology platform: Log4j.
+TECH-041,Bugzilla,Technology,Various,Technology platform: Bugzilla.
+TECH-042,MediaWiki,Technology,Various,Technology platform: MediaWiki.
+TECH-043,SquirrelMail,Technology,Various,Technology platform: SquirrelMail.
+TECH-044,Horde,Technology,Various,Technology platform: Horde.
+TECH-045,Citrix Presentation Server,Technology,Various,Technology platform: Citrix Presentation Server.

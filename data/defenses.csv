@@ -1,0 +1,36 @@
+id,name,description,implementation
+DEF-001,Parameterized Queries,Mitigation strategy: Parameterized Queries,Implement Parameterized Queries in SDLC and deployment.
+DEF-002,Allowlist Input Validation,Mitigation strategy: Allowlist Input Validation,Implement Allowlist Input Validation in SDLC and deployment.
+DEF-003,Output Encoding,Mitigation strategy: Output Encoding,Implement Output Encoding in SDLC and deployment.
+DEF-004,Content Security Policy,Mitigation strategy: Content Security Policy,Implement Content Security Policy in SDLC and deployment.
+DEF-005,CSRF Tokens,Mitigation strategy: CSRF Tokens,Implement CSRF Tokens in SDLC and deployment.
+DEF-006,SameSite Cookies,Mitigation strategy: SameSite Cookies,Implement SameSite Cookies in SDLC and deployment.
+DEF-007,Least Privilege,Mitigation strategy: Least Privilege,Implement Least Privilege in SDLC and deployment.
+DEF-008,Role-Based Access Control,Mitigation strategy: Role-Based Access Control,Implement Role-Based Access Control in SDLC and deployment.
+DEF-009,Multi-Factor Authentication,Mitigation strategy: Multi-Factor Authentication,Implement Multi-Factor Authentication in SDLC and deployment.
+DEF-010,Secure Session Management,Mitigation strategy: Secure Session Management,Implement Secure Session Management in SDLC and deployment.
+DEF-011,Password Hashing,Mitigation strategy: Password Hashing,Implement Password Hashing in SDLC and deployment.
+DEF-012,Secrets Management,Mitigation strategy: Secrets Management,Implement Secrets Management in SDLC and deployment.
+DEF-013,Dependency Scanning,Mitigation strategy: Dependency Scanning,Implement Dependency Scanning in SDLC and deployment.
+DEF-014,SAST,Mitigation strategy: SAST,Implement SAST in SDLC and deployment.
+DEF-015,DAST,Mitigation strategy: DAST,Implement DAST in SDLC and deployment.
+DEF-016,Web Application Firewall,Mitigation strategy: Web Application Firewall,Implement Web Application Firewall in SDLC and deployment.
+DEF-017,Egress Filtering,Mitigation strategy: Egress Filtering,Implement Egress Filtering in SDLC and deployment.
+DEF-018,XML Parser Hardening,Mitigation strategy: XML Parser Hardening,Implement XML Parser Hardening in SDLC and deployment.
+DEF-019,File Upload Validation,Mitigation strategy: File Upload Validation,Implement File Upload Validation in SDLC and deployment.
+DEF-020,Path Normalization,Mitigation strategy: Path Normalization,Implement Path Normalization in SDLC and deployment.
+DEF-021,Sandboxing,Mitigation strategy: Sandboxing,Implement Sandboxing in SDLC and deployment.
+DEF-022,Rate Limiting,Mitigation strategy: Rate Limiting,Implement Rate Limiting in SDLC and deployment.
+DEF-023,Security Headers,Mitigation strategy: Security Headers,Implement Security Headers in SDLC and deployment.
+DEF-024,Patch Management,Mitigation strategy: Patch Management,Implement Patch Management in SDLC and deployment.
+DEF-025,Centralized Logging,Mitigation strategy: Centralized Logging,Implement Centralized Logging in SDLC and deployment.
+DEF-026,Encryption at Rest,Mitigation strategy: Encryption at Rest,Implement Encryption at Rest in SDLC and deployment.
+DEF-027,TLS Everywhere,Mitigation strategy: TLS Everywhere,Implement TLS Everywhere in SDLC and deployment.
+DEF-028,Secure Code Review,Mitigation strategy: Secure Code Review,Implement Secure Code Review in SDLC and deployment.
+DEF-029,Network Segmentation,Mitigation strategy: Network Segmentation,Implement Network Segmentation in SDLC and deployment.
+DEF-030,Backup and Recovery,Mitigation strategy: Backup and Recovery,Implement Backup and Recovery in SDLC and deployment.
+DEF-031,Deserialization Allowlist,Mitigation strategy: Deserialization Allowlist,Implement Deserialization Allowlist in SDLC and deployment.
+DEF-032,Memory-Safe Languages,Mitigation strategy: Memory-Safe Languages,Implement Memory-Safe Languages in SDLC and deployment.
+DEF-033,Binary Hardening,Mitigation strategy: Binary Hardening,Implement Binary Hardening in SDLC and deployment.
+DEF-034,Account Lockout,Mitigation strategy: Account Lockout,Implement Account Lockout in SDLC and deployment.
+DEF-035,Configuration Baselines,Mitigation strategy: Configuration Baselines,Implement Configuration Baselines in SDLC and deployment.

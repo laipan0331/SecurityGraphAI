@@ -1,0 +1,11 @@
+owasp_id,name,description,focus_area
+OWASP-2021-A01,Broken Access Control,Authorization weaknesses,Authorization
+OWASP-2021-A02,Cryptographic Failures,Weak or missing crypto,Data Protection
+OWASP-2021-A03,Injection,Untrusted input interpreted as code,Input Handling
+OWASP-2021-A04,Insecure Design,Missing security by design,Architecture
+OWASP-2021-A05,Security Misconfiguration,Unsafe default settings,Configuration
+OWASP-2021-A06,Vulnerable Components,Outdated vulnerable dependencies,Supply Chain
+OWASP-2021-A07,Auth Failures,Identity/session weaknesses,Identity
+OWASP-2021-A08,Integrity Failures,Code/data integrity issues,Integrity
+OWASP-2021-A09,Logging Failures,Missing detection and monitoring,Detection
+OWASP-2021-A10,SSRF,Server-side request forgery,Networking
