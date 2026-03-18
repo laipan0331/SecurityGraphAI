@@ -3,6 +3,7 @@ SecurityGraph AI - Step 1: Data Collection
 Collect CVE vulnerability data from NVD (National Vulnerability Database)
 """
 
+import argparse
 import requests
 import pandas as pd
 import time
@@ -96,7 +97,7 @@ class CVEDataCollector:
             "cwe_ids": ", ".join(cwe_ids) if cwe_ids else None
         }
     
-    def collect_security_dataset(self):
+    def collect_security_dataset(self, max_results_per_keyword=25):
         """Collect security dataset"""
         keywords = [
             "SQL injection",
@@ -116,7 +117,7 @@ class CVEDataCollector:
         for i, keyword in enumerate(keywords):
             print(f"\nProgress: {i+1}/{len(keywords)}")
             
-            cves = self.fetch_cves_by_keyword(keyword, max_results=10)
+            cves = self.fetch_cves_by_keyword(keyword, max_results=max_results_per_keyword)
             
             for cve_item in cves:
                 record = self.parse_cve_data(cve_item)
@@ -144,12 +145,23 @@ class CVEDataCollector:
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Collect CVE data from NVD")
+    parser.add_argument(
+        "--max-results-per-keyword",
+        type=int,
+        default=25,
+        help="Maximum CVEs to fetch per keyword (default: 25)",
+    )
+    args = parser.parse_args()
+
     print("=" * 50)
     print("SecurityGraph AI - Data Collection")
     print("=" * 50)
     
     collector = CVEDataCollector()
-    df = collector.collect_security_dataset()
+    df = collector.collect_security_dataset(
+        max_results_per_keyword=args.max_results_per_keyword
+    )
     
     print("\nData Statistics:")
     print(f"  Total records: {len(df)}")

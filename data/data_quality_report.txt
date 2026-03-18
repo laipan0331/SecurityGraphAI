@@ -1,0 +1,93 @@
+==============================================================================
+SECURITYGRAPH AI - DATA QUALITY REPORT
+==============================================================================
+
+Dataset Sizes
+------------------------------------------------------------------------------
+- processed_cves.csv: 244
+- enhanced_cves.csv: 244
+- train.csv: 172
+- val.csv: 36
+- test.csv: 36
+- vulnerabilities.csv: 36
+- defenses.csv: 35
+- tools.csv: 24
+- technologies.csv: 45
+- cwes.csv: 28
+- owasp_categories.csv: 10
+- vuln_defenses.csv: 72
+- vuln_tools.csv: 72
+- vuln_cwes.csv: 36
+- vuln_owasp.csv: 36
+- cve_technologies.csv: 134
+
+Quality Checks
+------------------------------------------------------------------------------
+[PASS] processed_cves: cve_id has no nulls
+  null_count=0
+[PASS] processed_cves: cve_id is unique
+  duplicate_count=0
+[PASS] processed_cves: cvss_score in [0,10]
+  out_of_range=0
+[PASS] processed_cves: severity values are valid
+  invalid_values=none
+[PASS] processed_cves: published_date parseable
+  invalid_date_count=0
+[PASS] enhanced_cves: cve_id has no nulls
+  null_count=0
+[PASS] enhanced_cves: cve_id is unique
+  duplicate_count=0
+[PASS] vulnerabilities: id has no nulls
+  null_count=0
+[PASS] vulnerabilities: id is unique
+  duplicate_count=0
+[PASS] defenses: id has no nulls
+  null_count=0
+[PASS] defenses: id is unique
+  duplicate_count=0
+[PASS] tools: id has no nulls
+  null_count=0
+[PASS] tools: id is unique
+  duplicate_count=0
+[PASS] technologies: id has no nulls
+  null_count=0
+[PASS] technologies: id is unique
+  duplicate_count=0
+[PASS] cwes: cwe_id has no nulls
+  null_count=0
+[PASS] cwes: cwe_id is unique
+  duplicate_count=0
+[PASS] owasp_categories: owasp_id has no nulls
+  null_count=0
+[PASS] owasp_categories: owasp_id is unique
+  duplicate_count=0
+[PASS] splits: train/val/test are mutually exclusive
+  train_val_overlap=0, train_test_overlap=0, val_test_overlap=0
+[PASS] splits: union matches processed_cves
+  processed=244, union=244, missing=0, extra=0
+[PASS] vuln_defenses: vulnerability_id -> id
+  invalid_count=0; sample=none
+[PASS] vuln_defenses: defense_id -> id
+  invalid_count=0; sample=none
+[PASS] vuln_tools: vulnerability_id -> id
+  invalid_count=0; sample=none
+[PASS] vuln_tools: tool_id -> id
+  invalid_count=0; sample=none
+[PASS] vuln_cwes: vulnerability_id -> id
+  invalid_count=0; sample=none
+[PASS] vuln_cwes: cwe_id -> cwe_id
+  invalid_count=0; sample=none
+[PASS] vuln_owasp: vulnerability_id -> id
+  invalid_count=0; sample=none
+[PASS] vuln_owasp: owasp_id -> owasp_id
+  invalid_count=0; sample=none
+[PASS] cve_technologies: technology_id -> id
+  invalid_count=0; sample=none
+[PASS] cve_technologies: cve_id -> cve_id
+  invalid_count=0; sample=none
+
+Summary
+------------------------------------------------------------------------------
+Overall: PASS
+Passed: 31
+Failed: 0

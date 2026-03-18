@@ -16,13 +16,11 @@ for severity, count in df['severity'].value_counts().items():
     print(f"  {severity:10s}: {count:3d} ({count/len(df)*100:5.1f}%)")
 print()
 
-# Since there is only 1 LOW record, we cannot use stratified sampling
-# We will put LOW separately into the training set
-print("Note: LOW severity has only 1 record, will be placed in training set")
-print()
-
 low_df = df[df['severity'] == 'LOW']
 other_df = df[df['severity'] != 'LOW']
+
+print(f"Note: LOW severity has {len(low_df)} records, will be placed in training set")
+print()
 
 print(f"LOW records: {len(low_df)} records")
 print(f"Other records: {len(other_df)} records\n")

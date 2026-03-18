@@ -4,112 +4,117 @@ SECURITYGRAPH AI - DATA STATISTICS REPORT
 
 1. Dataset Overview
 --------------------------------------------------------------------------------
-   Total CVE count: 97
-   Time range: 1992-06-04 to 2019-08-22
+   Total CVE count: 244
+   Time range: 1992-06-04 to 2020-11-17
 
 2. Text Feature Statistics
 --------------------------------------------------------------------------------
-   Average description length: 242.63 characters
-   Longest description: 556 characters
-   Shortest description: 97 characters
-   Average token count: 34.92
-   Average sentence count: 1.21
+   Average description length: 273.09 characters
+   Longest description: 1043 characters
+   Shortest description: 82 characters
+   Average token count: 39.28
+   Average sentence count: 1.34
 
 3. Severity Distribution
 --------------------------------------------------------------------------------
-   HIGH      :  48 ( 49.5%) ████████████████████████
-   MEDIUM    :  39 ( 40.2%) ████████████████████
-   CRITICAL  :   9 (  9.3%) ████
-   LOW       :   1 (  1.0%) 
+   HIGH      : 113 ( 46.3%) ███████████████████████
+   MEDIUM    : 102 ( 41.8%) ████████████████████
+   CRITICAL  :  25 ( 10.2%) █████
+   LOW       :   4 (  1.6%) 
 
 4. CVSS Score Statistics
 --------------------------------------------------------------------------------
-   Average CVSS: 6.86
+   Average CVSS: 6.77
    Median CVSS: 7.50
    Highest CVSS: 10.00
-   Lowest CVSS: 3.50
+   Lowest CVSS: 2.10
 
    CVSS score range distribution:
-     9.0-10.0 (Critical): 9
-     7.0-8.9  (High):     48
-     4.0-6.9  (Medium):   39
-     0.0-3.9  (Low):      1
+     9.0-10.0 (Critical): 25
+     7.0-8.9  (High):     113
+     4.0-6.9  (Medium):   102
+     0.0-3.9  (Low):      4
 
 5. Vocabulary Statistics
 --------------------------------------------------------------------------------
-   Total token count: 3387
-   Unique token count (vocabulary size): 949
-   Vocabulary richness: 0.2802
+   Total token count: 9584
+   Unique token count (vocabulary size): 2025
+   Vocabulary richness: 0.2113
 
 6. Most Common Security Terms (Top 30)
 --------------------------------------------------------------------------------
-    1. remote              :   81
-    2. attackers           :   70
-    3. vulnerability       :   56
-    4. arbitrary           :   48
-    5. execute             :   32
-    6. before              :   31
-    7. request             :   27
-    8. sql                 :   26
-    9. cross-site          :   22
-   10. that                :   22
-   11. files               :   22
-   12. injection           :   20
-   13. code                :   20
-   14. forgery             :   20
-   15. parameter           :   18
-   16. which               :   18
-   17. entity              :   18
-   18. commands            :   17
-   19. users               :   16
-   20. xml                 :   16
-   21. authentication      :   15
-   22. through             :   15
-   23. server              :   14
-   24. external            :   14
-   25. earlier             :   13
-   26. attack              :   13
-   27. bypass              :   13
-   28. read                :   13
-   29. dot                 :   13
-   30. scripting           :   12
+    1. remote              :  217
+    2. attackers           :  191
+    3. arbitrary           :  146
+    4. vulnerability       :  143
+    5. before              :  122
+    6. execute             :   82
+    7. request             :   77
+    8. sql                 :   76
+    9. injection           :   60
+   10. that                :   60
+   11. code                :   59
+   12. files               :   57
+   13. which               :   55
+   14. cross-site          :   53
+   15. entity              :   52
+   16. xml                 :   51
+   17. forgery             :   51
+   18. parameter           :   49
+   19. external            :   44
+   20. read                :   43
+   21. commands            :   42
+   22. authentication      :   39
+   23. server              :   38
+   24. earlier             :   38
+   25. user                :   38
+   26. this                :   35
+   27. other               :   34
+   28. bypass              :   34
+   29. attack              :   33
+   30. users               :   33
 
 7. CWE (Vulnerability Type) Statistics
 --------------------------------------------------------------------------------
-   CVEs with CWE labels: 97 (100.0%)
+   CVEs with CWE labels: 244 (100.0%)
    CVEs without CWE labels: 0 (0.0%)
 
    Most common CWE types:
-     CWE-502: 11
-     CWE-352: 7
-     CWE-611: 4
-     CWE-20: 3
-     CWE-399: 3
+     CWE-502: 26
+     CWE-20: 11
+     CWE-611: 11
+     CWE-352: 9
+     CWE-89: 7
+     CWE-200: 7
+     CWE-399: 4
+     CWE-22: 4
+     CWE-264: 3
      CWE-94: 3
-     CWE-22: 2
-     CWE-264: 2
-     CWE-367: 1
-     CWE-88: 1
 
 8. CVE Publication Year Distribution
 --------------------------------------------------------------------------------
    1992: 1 CVEs
    1997: 2 CVEs
    1999: 6 CVEs
-   2000: 10 CVEs
-   2001: 17 CVEs
-   2002: 14 CVEs
-   2003: 5 CVEs
-   2004: 9 CVEs
-   2005: 4 CVEs
+   2000: 15 CVEs
+   2001: 41 CVEs
+   2002: 35 CVEs
+   2003: 12 CVEs
+   2004: 16 CVEs
+   2005: 27 CVEs
+   2006: 15 CVEs
    2008: 1 CVEs
    2009: 1 CVEs
    2010: 2 CVEs
    2011: 5 CVEs
-   2013: 2 CVEs
-   2014: 8 CVEs
+   2012: 7 CVEs
+   2013: 10 CVEs
+   2014: 9 CVEs
+   2015: 7 CVEs
+   2016: 7 CVEs
    2018: 5 CVEs
-   2019: 5 CVEs
+   2019: 11 CVEs
+   2020: 9 CVEs
 
 ================================================================================
 Report Generation Complete
