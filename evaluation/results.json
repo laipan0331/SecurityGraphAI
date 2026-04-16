@@ -1,0 +1,489 @@
+{
+  "timestamp": "2026-04-08T18:51:57.708374",
+  "summary": {
+    "total": 20,
+    "avg_bleu_score": 0.95,
+    "execution_exact_match_rate": "95.0%",
+    "avg_faithfulness": 3.65,
+    "avg_answer_relevance": 4.7,
+    "outlier_count": 8
+  },
+  "by_category": {
+    "aggregation": {
+      "avg_bleu": 1.0,
+      "exact_match_rate": "100%",
+      "avg_faithfulness": 4.5,
+      "avg_relevance": 5.0
+    },
+    "filter": {
+      "avg_bleu": 1.0,
+      "exact_match_rate": "100%",
+      "avg_faithfulness": 3.5,
+      "avg_relevance": 4.5
+    },
+    "defense": {
+      "avg_bleu": 1.0,
+      "exact_match_rate": "100%",
+      "avg_faithfulness": 2.33,
+      "avg_relevance": 5.0
+    },
+    "tool": {
+      "avg_bleu": 1.0,
+      "exact_match_rate": "100%",
+      "avg_faithfulness": 3.33,
+      "avg_relevance": 4.67
+    },
+    "multihop": {
+      "avg_bleu": 1.0,
+      "exact_match_rate": "100%",
+      "avg_faithfulness": 4.25,
+      "avg_relevance": 4.25
+    },
+    "outlier_candidate": {
+      "avg_bleu": 0.5,
+      "exact_match_rate": "50%",
+      "avg_faithfulness": 3.5,
+      "avg_relevance": 5.0
+    }
+  },
+  "outliers": [
+    {
+      "id": "Q06",
+      "question": "Show me CVEs with CVSS score above 9.",
+      "category": "filter",
+      "bleu_score": 1.0,
+      "exact_match": true,
+      "faithfulness": 2,
+      "relevance": 5,
+      "reasons": [
+        "Low Faithfulness (2/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q08",
+      "question": "Which CVEs use a remote attack vector?",
+      "category": "filter",
+      "bleu_score": 1.0,
+      "exact_match": true,
+      "faithfulness": 2,
+      "relevance": 5,
+      "reasons": [
+        "Low Faithfulness (2/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q09",
+      "question": "How do I prevent XSS attacks?",
+      "category": "defense",
+      "bleu_score": 1.0,
+      "exact_match": true,
+      "faithfulness": 1,
+      "relevance": 5,
+      "reasons": [
+        "Low Faithfulness (1/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "What are the defenses for SQL injection?",
+      "category": "defense",
+      "bleu_score": 1.0,
+      "exact_match": true,
+      "faithfulness": 2,
+      "relevance": 5,
+      "reasons": [
+        "Low Faithfulness (2/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q14",
+      "question": "What security tools are available?",
+      "category": "tool",
+      "bleu_score": 1.0,
+      "exact_match": true,
+      "faithfulness": 2,
+      "relevance": 5,
+      "reasons": [
+        "Low Faithfulness (2/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q17",
+      "question": "What are the common weaknesses in Cisco products and how do I fix them?",
+      "category": "multihop",
+      "bleu_score": 1.0,
+      "exact_match": true,
+      "faithfulness": 5,
+      "relevance": 2,
+      "reasons": [
+        "Low Relevance (2/5) \u2014 answer off-topic"
+      ]
+    },
+    {
+      "id": "Q19",
+      "question": "Which software has no known defenses?",
+      "category": "outlier_candidate",
+      "bleu_score": 0.0,
+      "exact_match": false,
+      "faithfulness": 2,
+      "relevance": 5,
+      "reasons": [
+        "Low BLEU (0.00) \u2014 Cypher structure differs significantly",
+        "ExactMatch failed \u2014 GT returned 20 records, Generated returned 20 records",
+        "Low Faithfulness (2/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q20",
+      "question": "What CVEs affect React?",
+      "category": "outlier_candidate",
+      "bleu_score": 1.0,
+      "exact_match": true,
+      "faithfulness": 5,
+      "relevance": 5,
+      "reasons": [
+        "Query returned 0 results \u2014 data may not exist in graph"
+      ]
+    }
+  ],
+  "detailed_results": [
+    {
+      "id": "Q01",
+      "question": "How many critical CVEs are there?",
+      "category": "aggregation",
+      "cypher_generated": "MATCH (c:CVE)-[:HAS_SEVERITY]->(s:Severity {level: 'CRITICAL'}) RETURN count(c) AS critical_count",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 1,
+      "faithfulness_score": 4,
+      "answer_relevance_score": 5,
+      "answer": "There are 49 critical CVEs.",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q02",
+      "question": "Which software has the most vulnerabilities?",
+      "category": "aggregation",
+      "cypher_generated": "MATCH (c:CVE)-[:AFFECTS_SOFTWARE]->(s:Software) RETURN s.name AS software, count(c) AS vuln_count ORDER BY vuln_count DESC LIMIT 10",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 10,
+      "faithfulness_score": 5,
+      "answer_relevance_score": 5,
+      "answer": "Based on the provided data, **PHP** has the most vulnerabilities with a count of 21.",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q03",
+      "question": "What are the most common CWE weaknesses?",
+      "category": "aggregation",
+      "cypher_generated": "MATCH (c:CVE)-[:MAPS_TO]->(w:CWE) RETURN w.cwe_id AS cwe, count(c) AS count ORDER BY count DESC LIMIT 10",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 10,
+      "faithfulness_score": 4,
+      "answer_relevance_score": 5,
+      "answer": "Based on the database results, the most common CWE weaknesses are:\n\n1.  **CWE-862:** Missing Authorization (57 instances)\n2.  **CWE-79:** Improper Neutralization of Input During Web Page Generation (Cross-site Scripting) (52 instances)\n3.  **CWE-89:** Improper Neutralization of Special Elements used in an SQL Command (SQL Injection) (34 instances)\n4.  **CWE-502:** Deserialization of Untrusted Data (32 instances)\n5.  **CWE-22:** Improper Limitation of a Pathname to a Restricted Directory (Path Traversal) (27 instances)",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q04",
+      "question": "What vulnerability types are most common?",
+      "category": "aggregation",
+      "cypher_generated": "MATCH (c:CVE)-[:HAS_VULNERABILITY_TYPE]->(v:VulnerabilityType) RETURN v.name AS type, count(c) AS count ORDER BY count DESC LIMIT 10",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 10,
+      "faithfulness_score": 5,
+      "answer_relevance_score": 5,
+      "answer": "Based on the provided data, the most common vulnerability types are:\n\n1.  **SQL Injection** (45 occurrences)\n2.  **Remote Code Execution** (31 occurrences)\n3.  **Cross-Site Scripting** and **XML External Entity** (tied with 26 occurrences each)",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q05",
+      "question": "List CVEs affecting Apache.",
+      "category": "filter",
+      "cypher_generated": "MATCH (c:CVE)-[:AFFECTS_SOFTWARE]->(s:Software) WHERE toLower(s.name) CONTAINS 'apache' RETURN c.cve_id, c.description LIMIT 20",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 3,
+      "faithfulness_score": 5,
+      "answer_relevance_score": 3,
+      "answer": "Here are the CVEs affecting Apache based on the provided data:\n\n*   **CVE-2001-0829**: A cross-site scripting vulnerability in Apache Tomcat 3.2.1 allows malicious Javascript to be embedded in an error message.\n*   **CVE-2011-1502**: Liferay Portal Community Edition (CE) 6.x before 6.0.6 GA, when Apache Tomcat is used, allows remote authenticated users to read arbitrary files via an XML External Entity (XXE) issue.\n*   **CVE-2015-1775**: A server-side request forgery (SSRF) vulnerability in the proxy endpoint in Apache Ambari before 2.1.0 allows remote authenticated users to conduct port scans and access unsecured services.",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q06",
+      "question": "Show me CVEs with CVSS score above 9.",
+      "category": "filter",
+      "cypher_generated": "MATCH (c:CVE) WHERE c.cvss_score >= 9 RETURN c.cve_id, c.cvss_score, c.description ORDER BY c.cvss_score DESC LIMIT 20",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 20,
+      "faithfulness_score": 2,
+      "answer_relevance_score": 5,
+      "answer": "Here are the CVEs with a CVSS score above 9:\n\n*   **CVE-2002-0539**: CVSS Score 10.0\n*   **CVE-2018-15381**: CVSS Score 10.0\n*   **CVE-2000-1053**: CVSS Score 10.0\n*   **CVE-2004-2403**: CVSS Score 10.0\n*   **CVE-2019-11030**: CVSS Score 10.0\n*   **CVE-2001-1053**: CVSS Score 10.0\n*   **CVE-2002-0287**: CVSS Score 10.0\n*   **CVE-2002-0308**: CVSS Score 10.0\n*   **CVE-2000-0233**: CVSS Score 10.0\n*   **CVE-2002-0951**: CVSS Score 10.0\n*   **CVE-2001-0269**: CVSS Score 10.0\n*   **CVE-2026-23696**: CVSS Score 9.9\n*   **CVE-2018-19276**: CVSS Score 9.8\n*   **CVE-2018-3784**: CVSS Score 9.8\n*   **CVE-2020-3280**: CVSS Score 9.8\n*   **CVE-2018-0147**: CVSS Score 9.8\n*   **CVE-2019-16894**: CVSS Score 9.8\n*   **CVE-2019-18364**: CVSS Score 9.8\n*   **CVE-2019-12630**: CVSS Score 9.8\n*   **CVE-2019-18956**: CVSS Score 9.8",
+      "cypher_error": null,
+      "is_outlier": true,
+      "outlier_reasons": [
+        "Low Faithfulness (2/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q07",
+      "question": "How many CVEs were published in 2021?",
+      "category": "filter",
+      "cypher_generated": "MATCH (c:CVE)-[:PUBLISHED_IN]->(y:Year {value: '2021'}) RETURN count(c) AS count",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 1,
+      "faithfulness_score": 5,
+      "answer_relevance_score": 5,
+      "answer": "There were 0 CVEs published in 2021.",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q08",
+      "question": "Which CVEs use a remote attack vector?",
+      "category": "filter",
+      "cypher_generated": "MATCH (c:CVE)-[:HAS_ATTACK_VECTOR]->(a:AttackVector) WHERE toLower(a.name) CONTAINS 'remote' RETURN c.cve_id, c.description LIMIT 20",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 20,
+      "faithfulness_score": 2,
+      "answer_relevance_score": 5,
+      "answer": "The following CVEs use a remote attack vector:\n\n*   CVE-2013-0235\n*   CVE-2013-2199\n*   CVE-2014-5297\n*   CVE-2014-9038\n*   CVE-2014-2233\n*   CVE-2014-5237\n*   CVE-2014-8749\n*   CVE-2014-9292\n*   CVE-2014-9301\n*   CVE-2014-9302\n*   CVE-2002-0287\n*   CVE-2002-0308\n*   CVE-2002-0607\n*   CVE-2002-0536\n*   CVE-2002-0539\n*   CVE-2002-0554\n*   CVE-2002-0811\n*   CVE-2002-0878\n*   CVE-2002-0932\n*   CVE-2002-0951",
+      "cypher_error": null,
+      "is_outlier": true,
+      "outlier_reasons": [
+        "Low Faithfulness (2/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q09",
+      "question": "How do I prevent XSS attacks?",
+      "category": "defense",
+      "cypher_generated": "MATCH (w:CWE {cwe_id: 'CWE-79'})-[:MITIGATED_BY]->(d:Defense) RETURN d.name AS defense, d.description AS description",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 36,
+      "faithfulness_score": 1,
+      "answer_relevance_score": 5,
+      "answer": "To prevent XSS (Cross-Site Scripting) attacks, focus on handling all untrusted data securely based on its context within the webpage. The primary strategies include:\n\n1.  **Framework Security:** Utilize modern web frameworks that offer built-in XSS protections through templating, auto-escaping, and guiding developers towards secure practices.\n2.  **XSS Defense Philosophy (Perfect Injection Resistance):** Ensure that *all* variables in your web application undergo validation and are then properly **escaped** or **sanitized** before being rendered.\n3.  **Output Encoding:** This is crucial for safely displaying user-provided data as text rather than executable code. Apply the correct encoding based on the context:\n    *   **HTML Contexts:** For data placed between HTML tags (e.g., `<div>`, `<b>`).\n    *   **HTML Attribute Contexts:** For data placed within HTML attribute values (e.g., `alt`, `href`).\n    *   **JavaScript Contexts:** For data embedded in inline JavaScript.\n    *   **CSS Contexts:** Only place variables in CSS property values, as other CSS contexts are generally unsafe.\n    *   **URL Contexts:** Use URL encoding for variables in URLs (e.g., parameters, fragments).\n4.  **HTML Sanitization:** When users need to author HTML (e.g., in WYSIWYG editors), use robust HTML sanitization to remove malicious elements while preserving desired formatting and styling. Output encoding alone would break this intended functionality.\n5.  **Content-Security-Policy (CSP) Headers:** Implement a strong CSP as an additional defense layer. While not a standalone solution, a well-configured CSP (e.g., with a strict policy or nonce/hash-based approach) can significantly mitigate the impact of XSS.\n\n**Ineffective Approaches to Avoid (Anti-patterns):**\n*   **Sole Reliance on CSP:** CSP is a strong addition but should not be the only defense against XSS.\n*   **Reliance on HTTP Interceptors/Filters:** Attempting to handle all validation and output encoding through global interceptors or servlet filters is generally unreliable and less effective than context-specific encoding.",
+      "cypher_error": null,
+      "is_outlier": true,
+      "outlier_reasons": [
+        "Low Faithfulness (1/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "What are the defenses for SQL injection?",
+      "category": "defense",
+      "cypher_generated": "MATCH (w:CWE {cwe_id: 'CWE-89'})-[:MITIGATED_BY]->(d:Defense) RETURN d.name AS defense, d.description AS description",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 16,
+      "faithfulness_score": 2,
+      "answer_relevance_score": 5,
+      "answer": "The primary defenses against SQL injection include:\n\n1.  **Prepared Statements (with Parameterized Queries):** This is highly recommended. Developers should define all SQL code first and then pass in user-supplied parameters separately, preventing malicious input from altering the query structure.\n2.  **Stored Procedures:** When implemented safely, stored procedures can have the same effect as parameterized queries by separating SQL code from user input.\n\nAdditional important defenses are:\n\n3.  **Allow-list Input Validation:** This is crucial, especially for parts of SQL queries where bind variables aren't possible (e.g., table names, column names, sort order indicators). These values should ideally come from the application code, not user parameters. It can also serve as a secondary defense to detect unauthorized input before it reaches the SQL query, though caution is advised if combining validated data with string building.\n4.  **Least Privilege:** Minimize the database privileges assigned to application accounts to reduce the potential damage of a successful SQL injection attack.\n\nA defense that is **STRONGLY DISCOURAGED** is:\n\n5.  **Escaping All User-Supplied Input:** This method is database-specific, fragile, and cannot guarantee the prevention of all SQL injections in all situations.",
+      "cypher_error": null,
+      "is_outlier": true,
+      "outlier_reasons": [
+        "Low Faithfulness (2/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q11",
+      "question": "How do I fix CSRF vulnerabilities?",
+      "category": "defense",
+      "cypher_generated": "MATCH (w:CWE {cwe_id: 'CWE-352'})-[:MITIGATED_BY]->(d:Defense) RETURN d.name AS defense, d.description AS description",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 48,
+      "faithfulness_score": 4,
+      "answer_relevance_score": 5,
+      "answer": "To fix CSRF vulnerabilities, implement one or a combination of the following robust defense mechanisms:\n\n1.  **Leverage Built-in Framework Protections:** Before implementing custom solutions, check if your web framework or platform provides built-in CSRF protection. These are generally preferable as they are maintained and reduce implementation error risk.\n\n2.  **Synchronizer Token Pattern (Most Recommended):**\n    *   Generate a unique, unpredictable **CSRF token** on the server-side for each user session or per request.\n    *   Embed this token into all state-changing forms and AJAX requests (e.g., as a hidden field or a custom HTTP header).\n    *   On the server, validate that the token submitted with the request matches the token stored on the server for that session.\n    *   **For AJAX/API calls:** Include the CSRF token as a custom request header. Store the token securely in the DOM (e.g., `<meta>` tag or JavaScript variable) for client-side retrieval, but avoid storing it in cookies or browser local storage.\n\n3.  **Fetch Metadata Headers (Modern & Easy):**\n    *   Utilize `Sec-Fetch-Site` (and optionally `Sec-Fetch-Mode`, `Sec-Fetch-Dest`, `Sec-Fetch-User`) HTTP request headers.\n    *   Configure your server to inspect these headers to determine the request's origin context.\n    *   Block requests where `Sec-Fetch-Site` indicates a cross-site origin for sensitive operations. This is straightforward to implement on the server-side and has excellent browser compatibility.\n\n4.  **SameSite Cookie Attribute:**\n    *   Set the `SameSite` attribute for your session and other sensitive cookies to `Lax` or `Strict`.\n    *   This instructs browsers to prevent cookies from being sent along with cross-site requests, effectively mitigating many CSRF attack vectors.\n\n5.  **Double-Submit Cookie Pattern (Stateless Alternative):**\n    *   If maintaining server-side state for tokens is problematic, generate a cryptographically strong random value.\n    *   Set this value as both a cookie and a hidden form field/request parameter.\n    *   The server then verifies that the cookie value and the request parameter value match.\n    *   **Note:** The \"Naive Double-Submit Cookie Pattern\" (where the cookie is set even before authentication) is **discouraged** due to potential vulnerabilities.\n\n6.  **Custom Request Headers for AJAX/API Endpoints:**\n    *   For applications primarily using AJAX or API calls (not traditional `<form>` submissions), send a custom request header (e.g., `X-CSRF-Token`).\n    *   Browsers will preflight requests with custom headers (CORS preflight), preventing simple cross-site requests from reaching your server. No explicit token value is needed in the header itself if the mere presence of a custom header is the defense.\n\n7.  **Disallowing Simple Content Types:**\n    *   Configure your server or API to disallow `application/x-www-form-urlencoded`, `multipart/form-data`, and `text/plain` for state-changing operations.\n    *   Many modern web applications use `application/json`, which requires a CORS preflight and is therefore less susceptible to \"simple\" CSRF attacks.\n\n8.  **Verify Origin Using Standard Headers:**\n    *   As a secondary defense, inspect the `Origin` and `Referer` HTTP headers to ensure requests originate from your expected domain. Note that these headers can sometimes be missing or manipulated, so they should not be the sole defense.\n\n9.  **Mitigate Client-Side CSRF Attacks:**\n    *   Prevent client-side JavaScript code from generating asynchronous HTTP requests using attacker-controlled inputs (e.g., from the URL, `window.name`, `document.referrer`, or `postMessages`). Ensure requests cannot be manipulated via these external inputs.\n\n10. **User Interaction-Based Defense:**\n    *   For highly sensitive operations, consider requiring explicit user interaction, such as re-authenticating or confirming the action via a CAPTCHA or a one-time password (OTP).\n\n11. **Don't Forget Login Forms:**\n    *   While users aren't authenticated during login, CSRF vulnerabilities can still exist on login forms with different impacts. Ensure these forms are also protected.",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q12",
+      "question": "What tools can detect XSS?",
+      "category": "tool",
+      "cypher_generated": "MATCH (w:CWE {cwe_id: 'CWE-79'})-[:DETECTED_BY]->(t:Tool) RETURN t.name AS tool",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 4,
+      "faithfulness_score": 5,
+      "answer_relevance_score": 4,
+      "answer": "Tools that can detect XSS include Burp Suite, OWASP ZAP, DOMPurify, and CSP Evaluator.",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q13",
+      "question": "What tools detect SQL injection?",
+      "category": "tool",
+      "cypher_generated": "MATCH (w:CWE {cwe_id: 'CWE-89'})-[:DETECTED_BY]->(t:Tool) RETURN t.name AS tool",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 4,
+      "faithfulness_score": 3,
+      "answer_relevance_score": 5,
+      "answer": "Tools that detect SQL injection include Burp Suite, OWASP ZAP, sqlmap, and SonarQube.",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q14",
+      "question": "What security tools are available?",
+      "category": "tool",
+      "cypher_generated": "MATCH (t:Tool) RETURN t.name AS tool",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 16,
+      "faithfulness_score": 2,
+      "answer_relevance_score": 5,
+      "answer": "Here are some security tools available:\n\n*   Burp Suite\n*   OWASP ZAP\n*   DOMPurify\n*   CSP Evaluator\n*   sqlmap\n*   SonarQube\n*   CSRFTester\n*   Hydra\n*   Checkmarx\n*   SSL Labs\n*   Nessus\n*   OpenSSL\n*   Semgrep\n*   XMLSec\n*   Hashcat\n*   John the Ripper",
+      "cypher_error": null,
+      "is_outlier": true,
+      "outlier_reasons": [
+        "Low Faithfulness (2/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q15",
+      "question": "Which CWEs have the most defenses?",
+      "category": "multihop",
+      "cypher_generated": "MATCH (w:CWE)-[:MITIGATED_BY]->(d:Defense) RETURN w.cwe_id AS cwe, count(d) AS defense_count ORDER BY defense_count DESC LIMIT 10",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 9,
+      "faithfulness_score": 4,
+      "answer_relevance_score": 5,
+      "answer": "Based on the data provided, **CWE-611 (Improper Restriction of XML External Entity Reference)** has the most defenses, with a count of 70.",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q16",
+      "question": "What tools should I use to secure my PHP application?",
+      "category": "multihop",
+      "cypher_generated": "MATCH (c:CVE)-[:AFFECTS_SOFTWARE]->(s:Software) WHERE toLower(s.name) CONTAINS 'php' WITH c MATCH (c)-[:MAPS_TO]->(w:CWE)-[:DETECTED_BY]->(t:Tool) RETURN DISTINCT t.name AS tool, collect(DISTINCT w.cwe_id) AS covers_cwes",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 6,
+      "faithfulness_score": 3,
+      "answer_relevance_score": 5,
+      "answer": "To secure your PHP application, you can utilize the following tools:\n\n*   **Dynamic Application Security Testing (DAST) Tools:**\n    *   **Burp Suite** and **OWASP ZAP**: These are comprehensive web vulnerability scanners that can identify a broad range of issues, including SQL Injection (CWE-89), Cross-Site Request Forgery (CWE-352), and XML External Entity (XXE) vulnerabilities (CWE-611). They test your running application by simulating attacks.\n\n*   **Static Application Security Testing (SAST) Tool:**\n    *   **SonarQube**: This tool analyzes your PHP source code to detect potential security flaws, such as SQL Injection (CWE-89), early in the development lifecycle.\n\n*   **Specialized Tools:**\n    *   **sqlmap**: Specifically designed to detect and exploit SQL Injection (CWE-89) vulnerabilities.\n    *   **CSRFTester**: Helps you test for Cross-Site Request Forgery (CWE-352) weaknesses in your application.\n    *   **XMLSec**: Can assist in preventing XML External Entity (XXE) vulnerabilities (CWE-611), often by helping with secure XML processing and validation.\n\nA combination of these tools for both dynamic testing of your running application and static analysis of your code will provide a more comprehensive security posture for your PHP application.",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q17",
+      "question": "What are the common weaknesses in Cisco products and how do I fix them?",
+      "category": "multihop",
+      "cypher_generated": "MATCH (c:CVE)-[:AFFECTS_SOFTWARE]->(s:Software) WHERE toLower(s.name) CONTAINS 'cisco' WITH c MATCH (c)-[:MAPS_TO]->(w:CWE)-[:MITIGATED_BY]->(d:Defense) RETURN DISTINCT w.cwe_id AS cwe, collect(DISTINCT d.name) AS defenses LIMIT 20",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 1,
+      "faithfulness_score": 5,
+      "answer_relevance_score": 2,
+      "answer": "Based on the database results, one identified weakness is **CWE-287: Improper Authentication**. While the data does not specifically detail common weaknesses *in Cisco products*, it provides general defenses for improper authentication which can be applied broadly.\n\nTo address improper authentication, the following practices are recommended:\n\n*   **Robust Password Management:** Implement strong password policies, secure password storage (e.g., hashed, salted), safe functions for password comparison, secure password recovery mechanisms, and features for users to change their passwords.\n*   **Secure Authentication Mechanisms:** Ensure passwords are only transmitted over secure channels (like TLS). Require re-authentication for sensitive actions and after risk events. Consider using strong transaction authentication and modern protocols such as OAuth 2.0/2.1, OpenID Connect (OIDC), SAML, or FIDO, including adaptive/risk-based authentication.\n*   **User Identity and Access Control:** Utilize unique User IDs and Usernames. Implement protections against automated attacks (e.g., brute-force).\n*   **Monitoring and Maintenance:** Establish comprehensive logging and monitoring of authentication events.\n\nIt's important to note that these are general best practices for securing authentication and are not specific fixes tailored for Cisco products. For vulnerabilities specific to Cisco, it's always best to consult Cisco's official security advisories and documentation.",
+      "cypher_error": null,
+      "is_outlier": true,
+      "outlier_reasons": [
+        "Low Relevance (2/5) \u2014 answer off-topic"
+      ]
+    },
+    {
+      "id": "Q18",
+      "question": "Which software has both critical CVEs and known defenses?",
+      "category": "multihop",
+      "cypher_generated": "MATCH (c:CVE)-[:HAS_SEVERITY]->(s:Severity {level: 'CRITICAL'}) MATCH (c)-[:AFFECTS_SOFTWARE]->(sw:Software) MATCH (c)-[:MAPS_TO]->(w:CWE)-[:MITIGATED_BY]->(d:Defense) RETURN DISTINCT sw.name AS software, count(DISTINCT c) AS critical_cves, count(DISTINCT d) AS available_defenses ORDER BY critical_cves DESC LIMIT 10",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 4,
+      "faithfulness_score": 5,
+      "answer_relevance_score": 5,
+      "answer": "The software that has both critical CVEs and known defenses includes Cisco, Mahara, Zend Framework, and PHP.",
+      "cypher_error": null,
+      "is_outlier": false,
+      "outlier_reasons": []
+    },
+    {
+      "id": "Q19",
+      "question": "Which software has no known defenses?",
+      "category": "outlier_candidate",
+      "cypher_generated": "MATCH (s:Software) WHERE NOT EXISTS { MATCH (s)<-[:AFFECTS_SOFTWARE]-(c:CVE)-[:MAPS_TO]->(w:CWE)-[:MITIGATED_BY]->(:Defense) } RETURN s.name AS software_with_no_known_defenses LIMIT 20",
+      "bleu_score": 0.0,
+      "execution_exact_match": false,
+      "exact_match_reason": "GT returned 20 records, Generated returned 20 records",
+      "results_count": 20,
+      "faithfulness_score": 2,
+      "answer_relevance_score": 5,
+      "answer": "Based on the database results, the software with no known defenses includes: Common, Allaire JRun, WordPress, Infoware MapSuite, Open, Alfresco Community Edition, AdMentor, Snitz Forums, IBM Informix Web DataBlade, Ruslan, Voxel Dot Net CBMS, CGIWrap, Proxomitron Naoko, TDForum, Microsoft Internet Security, Infopop Ultimate Bulletin Board, Namazu, ValiCert Enterprise Validation Authority, IBM WebSphere, and Caucho Technology Resin.",
+      "cypher_error": null,
+      "is_outlier": true,
+      "outlier_reasons": [
+        "Low BLEU (0.00) \u2014 Cypher structure differs significantly",
+        "ExactMatch failed \u2014 GT returned 20 records, Generated returned 20 records",
+        "Low Faithfulness (2/5) \u2014 possible hallucination"
+      ]
+    },
+    {
+      "id": "Q20",
+      "question": "What CVEs affect React?",
+      "category": "outlier_candidate",
+      "cypher_generated": "MATCH (c:CVE)-[:AFFECTS_SOFTWARE]->(s:Software) WHERE toLower(s.name) CONTAINS 'react' RETURN c.cve_id, c.description LIMIT 20",
+      "bleu_score": 1.0,
+      "execution_exact_match": true,
+      "exact_match_reason": "exact match",
+      "results_count": 0,
+      "faithfulness_score": 5,
+      "answer_relevance_score": 5,
+      "answer": "Based on the query results from the database, there are no CVEs currently listed as directly affecting React.",
+      "cypher_error": null,
+      "is_outlier": true,
+      "outlier_reasons": [
+        "Query returned 0 results \u2014 data may not exist in graph"
+      ]
+    }
+  ]
+}
